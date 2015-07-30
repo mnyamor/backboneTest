@@ -93,9 +93,10 @@
     var User = Backbone.Model.extend({
       urlRoot: '/users'
     });
+
     var UserList = Backbone.View.extend({
     //each backbone view is assinged an element which is the container
-	//Anything that happens inside the view rendering should happen inside the view as children
+	  //Anything that happens inside the view rendering should happen inside the view as children
       el: '.page',
       render: function () {
         var that = this;
@@ -108,7 +109,7 @@
             that.$el.html(template);
           }
         })
-      }
+      }  
     });
     var userList = new UserList();
     var UserEditView = Backbone.View.extend({
