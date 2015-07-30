@@ -1,0 +1,44 @@
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Backbonetutorial - router</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    
+    <script type="text/javascript">
+      //dynamic routing
+      var appRouter = Backbone.Router.extend({
+        routes : {
+          'posts/:id'      : 'getPost',
+          'download/*path' : 'downloadFile',
+          ':route/action'  : 'loadView',
+          //'*actions'  : 'defaultRoute'
+          //Backbone will try to match the route above first
+        }
+      });
+      //initiate the router
+      var r = new appRouter();
+
+      r.on('route:getPost', function(id) { 
+      // Note the variable in the route definition being passed in here
+         alert ('Get post number' + ' ' + id); 
+      });
+
+      r.on('route:downloadFile', function(path) {
+        alert(path + 'second alert');
+      });
+      r.on('route:loadView', function(route, action) {
+        console.log(route);
+        console.log(action);
+       // alert(route  + ' _ ' + ' ' + action); //dashboard_graph
+      });
+     //start backbone history - a neccessary step for bookmarkable URL
+      Backbone.history.start();
+    </script>
+  </body>
+</html>

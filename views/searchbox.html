@@ -1,79 +1,69 @@
 <!Doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>BackboneTutorials.com Beginner Video</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
-</head>
-<body>
-
-
-  <div class="container">
-    <div class="row">
-   <div id="search" class="col-sm-6 col-sm-offset-3"></div>    
-
-
-   <!-- Access template variables with <%= %> -->
-  <script type="text/template" id="search_template">
-    <label><%= search_label %></label>
-
-    <input type='text' id="search_input" class="form-control" value="" placeholder="Search"/>
-    <input class="btn btn-default " type="button" value="Search" id="searchbtn"/>           
-  </script>
-  </div>
-  </div>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
-  
-
-  <script type="text/javascript">
-   var searchbox = Backbone.View.extend({
-     //el: '.page',
-     initialize: function () {
-       console.log('test');
-       this.render();
-     }, 
-     render: function(){
-       var variables = {search_label : 'Search'};
-
-       var template = _.template( $("#search_template").html(), variables );
-
-          this.$el.html(template);
-     },
-     events: {
-      "click input[type=button]" : "doSearch",
-      "focusout #search_input" :"setDefaults"
-     },
-     doSearch : function(event) {
-      //button clicked, you can access the element that was clicked with event.current
-      console.log('search for' + ' ' + $('#search_input').val());
-     },
-     setDefaults :function(){
-      if ($('#search_input').val() !== '') {
-        //not sure if correct way to handle this
-        if(!this.doSearch()){
-         $('#search_input').val(''); 
- 
+  <head>
+    <meta charset="utf-8">
+    <title>Backbonetutorial - Searchbox </title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div id="search" class="col-sm-6 col-sm-offset-3"></div>
+        <!-- Access template variables with <%= %> -->
+        <script type="text/template" id="search_template">
+          <label><%= search_label %></label>
+          
+          <input type='text' id="search_input" class="form-control" value="" placeholder="Search"/>
+          <input class="btn btn-default " type="button" value="Search" id="searchbtn"/>           
+        </script>
+      </div>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    <script type="text/javascript">
+      var searchbox = Backbone.View.extend({
+        //el: '.page',
+        initialize: function () {
+          console.log('test');
+          this.render();
+        }, 
+        render: function(){
+          var variables = {search_label : 'Search'};
+          var template = _.template( $("#search_template").html(), variables );
+      
+             this.$el.html(template);
+        },
+        events: {
+         "click input[type=button]" : "doSearch",
+         "focusout #search_input" :"setDefaults"
+        },
+        doSearch : function(event) {
+         //button clicked, you can access the element that was clicked with event.current
+         console.log('search for' + ' ' + $('#search_input').val());
+        },
+        setDefaults :function(){
+         if ($('#search_input').val() !== '') {
+           //not sure if correct way to handle this
+           if(!this.doSearch()){
+            $('#search_input').val(''); 
+           }
+         }
         }
-
+      });
+       var searchbox = new searchbox({el: $('#search')});
+       //Backbone.history.start();
+    </script>
+    <style type="text/css">
+      .container{
+      margin:15px 30px;
       }
-
-     }
-   });
-    var searchbox = new searchbox({el: $('#search')});
-    //Backbone.history.start();
-</script>
-<style type="text/css">
-  .container{
-    margin:15px 30px;
-  }
-  .custom-search-form{
-    margin-top:5px;
-}
-#searchbtn{
-     vertical-align: top; 
-}
-</style>
-</body>
-</html> 
+      .custom-search-form{
+      margin-top:5px;
+      }
+      #searchbtn{
+      vertical-align: top; 
+      }
+    </style>
+  </body>
+</html>
