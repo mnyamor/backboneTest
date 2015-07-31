@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Backbonetutorial - router</title>
+    <title>Backbonetutorial - router [hide your kids , hide your  wife, hide your husbands]</title>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
   </head>
   <body>
@@ -12,13 +12,18 @@
     
     <script type="text/javascript">
       //dynamic routing
+      //create a custom router class
+      //Routes tell the app what to do
       var appRouter = Backbone.Router.extend({
         routes : {
           'posts/:id'      : 'getPost',
           'download/*path' : 'downloadFile',
           ':route/action'  : 'loadView',
-          //'*actions'  : 'defaultRoute'
+          '*page'  : 'defaultRoute',
           //Backbone will try to match the route above first
+        }, 
+        execute : function(){
+
         }
       });
       //initiate the router
@@ -33,11 +38,14 @@
         alert(path + 'second alert');
       });
       r.on('route:loadView', function(route, action) {
+        var restfulPageUrl = this.restfulUrl + route + "route" ;
         console.log(route);
         console.log(action);
        // alert(route  + ' _ ' + ' ' + action); //dashboard_graph
       });
      //start backbone history - a neccessary step for bookmarkable URL
+      Backbone.emulateHTTP = true;
+      Backbone.emulateJSON = true;
       Backbone.history.start();
     </script>
   </body>

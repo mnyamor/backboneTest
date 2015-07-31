@@ -1,0 +1,43 @@
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Backbonetutorial - model [hide your kids , hide your  wife, hide your husbands]</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+  <p> hide your kids , hide your  wife, hide your husbands</p>
+  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    
+    <script type="text/javascript"> 
+     var Person = Backbone.Model.extend({
+        defaults :{
+        name: 'Mary',
+        age: 0,
+      },
+      initialize : function  () {
+        var that = this;
+        console.log('this is a person');
+
+        that.on('change', function(model) {
+          var age = model.get("age");
+          console.log('changed to ' + age);
+        });
+      },
+    
+    });
+
+    //var personA = new person({ name: 'John' , age : 22});
+    var person = new Person();
+    //set the attributes
+        person.set({name: 'John' , age : 22});
+    //get the attributes
+    var personAName = person.get('age');
+       // console.log(personAName);
+
+    </script>
+  </body>
+</html>
